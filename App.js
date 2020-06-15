@@ -1,27 +1,41 @@
+/**
+ * @format
+ * @flow strict-local
+ */
+
+import 'react-native-gesture-handler';
+import * as React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import {Button, Text, View} from 'react-native';
-import {SchedulePage} from './SchedulePage';
-import {Home} from './Home';
-import * as React from 'react';
+
+import Home from './Home';
+import Trips from './Trips';
+import Itinerary from './Itinerary';
 
 const Stack = createStackNavigator();
 
-export default function App() {
+const App: () => React$Node = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator initialRouteName={'Home'}>
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{title: 'Find My Bus'}}
+          options={{title: 'Schedule a trip'}}
         />
         <Stack.Screen
-          name="Profile"
-          component={SchedulePage}
-          options={{title: 'Schedule'}}
+          name="Trips"
+          component={Trips}
+          options={{title: 'Select a trip'}}
+        />
+        <Stack.Screen
+          name="Itinerary"
+          component={Itinerary}
+          options={{title: 'Your trip'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
-}
+};
+
+export default App;
